@@ -993,8 +993,8 @@ def main():
         print(f"👑 Админ ID: {ADMIN_IDS}")
         print(f"🤖 Бот токен: {BOT_TOKEN[:10]}...")
         
-        # Запускаем бота (исправленная строка)
-        application.run_polling()
+        # Запускаем бота (альтернативный способ)
+        application.run_polling(drop_pending_updates=True)
         
     except Exception as e:
         logger.error(f"Критическая ошибка при запуске: {e}")
