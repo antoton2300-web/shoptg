@@ -5,6 +5,7 @@ import sqlite3
 from datetime import datetime
 import random
 import string
+import os  # Добавь эту строку
 
 # Настройка логирования
 logging.basicConfig(
@@ -13,11 +14,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ТОКЕН БОТА (новый)
-BOT_TOKEN = "8408406226:AAGEYZV9CB1DQfPQE7w3QsmfNg3xCpck2xs"
+# ТОКЕН БОТА (берем из переменных окружения Railway)
+BOT_TOKEN = os.environ.get('BOT_TOKEN', "8408406226:AAGEYZV9CB1DQfPQE7w3QsmfNg3xCpck2xs")
 
-# ID АДМИНИСТРАТОРА (твой)
-ADMIN_IDS = [5842443017]
+# ID АДМИНИСТРАТОРА (берем из переменных окружения)
+try:
+    ADMIN_IDS = [int(os.environ.get('ADMIN_ID', "5842443017"))]
+except:
+    ADMIN_IDS = [5842443017]
 
 # Цена 1 звезды в рублях
 STAR_PRICE = 1.5
@@ -928,4 +932,5 @@ def main():
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == '__main__':
+
     main()
