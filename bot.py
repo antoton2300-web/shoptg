@@ -989,13 +989,13 @@ def main():
         # Обработчик callback-запросов
         application.add_handler(CallbackQueryHandler(button_handler))
         
-        # Запуск бота
         print("✅ Бот запущен...")
         print(f"👑 Админ ID: {ADMIN_IDS}")
         print(f"🤖 Бот токен: {BOT_TOKEN[:10]}...")
         
-        # Запускаем бота
-        application.run_polling(allowed_updates=Update.ALL_TYPES)
+        # Запускаем бота (исправленная строка)
+        application.run_polling()
+        
     except Exception as e:
         logger.error(f"Критическая ошибка при запуске: {e}")
         print(f"❌ Ошибка: {e}")
