@@ -70,24 +70,32 @@ PROJECT_TEXT = f"""🔷 Проект Деда
 
 Подписывайтесь, чтобы быть в курсе всех новостей, обновлений и специальных предложений!"""
 
-# Функция создания inline клавиатуры (кнопки под сообщением)
+# Функция создания inline клавиатуры
 def create_inline_keyboard():
     markup = types.InlineKeyboardMarkup(row_width=2)
     
-    # Основные кнопки
-    btn1 = types.InlineKeyboardButton('🌟 Купить звёзды', callback_data='buy_stars')
-    btn2 = types.InlineKeyboardButton('🎨 Аренда NFT', callback_data='rent_nft')
-    btn3 = types.InlineKeyboardButton('💎 Премиум', callback_data='premium')
-    btn4 = types.InlineKeyboardButton('🆘 Поддержка', callback_data='support')
-    btn5 = types.InlineKeyboardButton('⭐️ Отзывы', callback_data='reviews')
+    # Кнопки как на скрине (в том же порядке)
+    btn1 = types.InlineKeyboardButton('💰 Купить звёзды', callback_data='buy_stars')
+    btn2 = types.InlineKeyboardButton('💸 Продать звёзды', callback_data='sell_stars')
+    btn3 = types.InlineKeyboardButton('🎨 Аренда NFT', callback_data='rent_nft')
+    btn4 = types.InlineKeyboardButton('🖼 Купить NFT', callback_data='buy_nft')
+    btn5 = types.InlineKeyboardButton('🎁 Купить обычный подарок', callback_data='buy_gift')
+    btn6 = types.InlineKeyboardButton('💎 Премиум', callback_data='premium')
+    btn7 = types.InlineKeyboardButton('💳 Пополнить баланс', callback_data='balance')
+    btn8 = types.InlineKeyboardButton('👤 Профиль', callback_data='profile')
+    btn9 = types.InlineKeyboardButton('🆘 Поддержка', callback_data='support')
+    btn10 = types.InlineKeyboardButton('🧮 Калькулятор', callback_data='calculator')
+    btn11 = types.InlineKeyboardButton('📄 Информация', callback_data='info')
+    btn12 = types.InlineKeyboardButton('⭐️ Отзывы', callback_data='reviews')
+    btn13 = types.InlineKeyboardButton('👥 Реферальная система', callback_data='referral')
     
-    # Дополнительные кнопки
-    btn6 = types.InlineKeyboardButton('📱 Покупка физов', callback_data='physical')
-    btn7 = types.InlineKeyboardButton('🔐 Купить приват', callback_data='private')
-    btn8 = types.InlineKeyboardButton('📢 Проект Деда', callback_data='project')
+    # Ваши дополнительные кнопки
+    btn14 = types.InlineKeyboardButton('📱 Покупка физов', callback_data='physical')
+    btn15 = types.InlineKeyboardButton('🔐 Купить приват', callback_data='private')
+    btn16 = types.InlineKeyboardButton('📢 Проект Деда', callback_data='project')
     
-    # Добавляем кнопки в markup
-    markup.add(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8)
+    # Добавляем кнопки в markup (соблюдая порядок с вашими в конце)
+    markup.add(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16)
     
     return markup
 
@@ -95,7 +103,6 @@ def create_inline_keyboard():
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     try:
-        # Отправляем сообщение с inline кнопками
         bot.send_message(
             message.chat.id, 
             WELCOME_TEXT, 
@@ -112,24 +119,57 @@ def send_welcome(message):
 def handle_callback(call):
     try:
         chat_id = call.message.chat.id
-        message_id = call.message.message_id
         
+        # Кнопки со скрина (все в разработке)
         if call.data == 'buy_stars':
             bot.answer_callback_query(call.id)
-            bot.send_message(chat_id, "Выберите количество звёзд:\n\n100⭐ - 100₽\n500⭐ - 450₽\n1000⭐ - 850₽\n\nСвязь: @CBACTOH_DEDA")
+            bot.send_message(chat_id, "🚧 Раздел «Купить звёзды» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'sell_stars':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Продать звёзды» находится в разработке. Скоро здесь появится информация!")
         
         elif call.data == 'rent_nft':
             bot.answer_callback_query(call.id)
-            bot.send_message(chat_id, "Доступные NFT для аренды:\n\n• Username: @name - 500⭐/мес\n• Username: @shop - 1000⭐/мес\n\nПо всем вопросам: @CBACTOH_DEDA")
+            bot.send_message(chat_id, "🚧 Раздел «Аренда NFT» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'buy_nft':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Купить NFT» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'buy_gift':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Купить обычный подарок» находится в разработке. Скоро здесь появится информация!")
         
         elif call.data == 'premium':
             bot.answer_callback_query(call.id)
-            bot.send_message(chat_id, "Telegram Premium:\n\n• 1 месяц - 300⭐\n• 3 месяца - 850⭐\n• 6 месяцев - 1600⭐\n• 1 год - 3000⭐\n\nСвязь: @CBACTOH_DEDA")
+            bot.send_message(chat_id, "🚧 Раздел «Премиум» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'balance':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Пополнить баланс» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'profile':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Профиль» находится в разработке. Скоро здесь появится информация!")
         
         elif call.data == 'support':
             bot.answer_callback_query(call.id)
-            bot.send_message(chat_id, "По всем вопросам обращайтесь: @CBACTOH_DEDA")
+            bot.send_message(chat_id, "🚧 Раздел «Поддержка» находится в разработке. Скоро здесь появится информация!")
         
+        elif call.data == 'calculator':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Калькулятор» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'info':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Информация» находится в разработке. Скоро здесь появится информация!")
+        
+        elif call.data == 'referral':
+            bot.answer_callback_query(call.id)
+            bot.send_message(chat_id, "🚧 Раздел «Реферальная система» находится в разработке. Скоро здесь появится информация!")
+        
+        # Ваши кнопки (рабочие)
         elif call.data == 'reviews':
             bot.answer_callback_query(call.id)
             bot.send_message(chat_id, REVIEWS_TEXT, parse_mode='Markdown', disable_web_page_preview=True)
@@ -168,7 +208,6 @@ def handle_text(message):
         elif message.text == '/owner' and message.from_user.id == OWNER_ID:
             bot.send_message(message.chat.id, "✅ Бот работает и готов к использованию!")
         else:
-            # Если пользователь пишет что-то другое, показываем меню с кнопками
             bot.send_message(
                 message.chat.id, 
                 "Пожалуйста, воспользуйтесь кнопками ниже:", 
